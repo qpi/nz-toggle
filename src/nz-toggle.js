@@ -1,7 +1,13 @@
 (function() {
     var module = angular.module('nzToggle', []);
 
-    module.directive('nzToggle', ['$timeout', function($timeout) {
+    module.directive('nzToggle', ['$timeout', function(timeout) {
+		/**
+		 * Fix for:
+		 * Uncaught ReferenceError: $timeout is not defined
+		 * in case of RequireJS
+		 */
+		$timeout = timeout;
         return {
             restrict: 'E',
             replace: true,
